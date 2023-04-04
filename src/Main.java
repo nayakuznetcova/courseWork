@@ -63,13 +63,11 @@ public class Main {
         return calculatePayrollCosts() / 10;
     }
 
-    public static void printName(){
+    public static void printName() {
         for (int i = 0; i < employees.length; i++) {
-            if (employees [i] != null) {
+            if (employees[i] != null) {
                 System.out.println("ФИО: " + employees[i].getSurName() + " " + employees[i].getName() + " " + employees[i].getPatronymic());
             }
         }
     }
-
-
 }
