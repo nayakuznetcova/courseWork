@@ -13,12 +13,33 @@ public class Main {
         employees[8] = new Employee("Зайцев", "Дмитрий", "Геннадьевич", 4, 103000);
         employees[9] = new Employee("Макарова", "Полина", "Евгеньевна", 3, 78000);
 
-        printEmployees();
         System.out.println("Сумма затрат на зарплаты в месяц: " + calculatePayrollCosts());
+        System.out.println("------------------------------------");
         System.out.println(minSalary());
+        System.out.println("------------------------------------");
         System.out.println(maxSalary());
+        System.out.println("------------------------------------");
         System.out.println("Средняя зарплата сотрудников: " + averageSalary());
+        System.out.println("------------------------------------");
         printName();
+        System.out.println("------------------------------------");
+        changeSalary(1.0f);
+        System.out.println("------------------------------------");
+        System.out.println("Минимальная зарплата в отделе: " + personaMinSalary(3));
+        System.out.println("------------------------------------");
+        System.out.println("Максимальная зарплата в отделе: " + personaMaxSalary(1));
+        System.out.println("------------------------------------");
+        System.out.println("Общая зарплата на отдел: " + sumByDepartament(3));
+        System.out.println("------------------------------------");
+        changeSalaryByDepartment(5, 1.0f);
+        System.out.println("------------------------------------");
+        printEmployees();
+        System.out.println("------------------------------------");
+        printNameSalary(4);
+        System.out.println("------------------------------------");
+        lessNumber(90000);
+        System.out.println("------------------------------------");
+        moreNumber(90000);
     }
 
     public static void printEmployees() {
@@ -63,13 +84,85 @@ public class Main {
         return calculatePayrollCosts() / 10;
     }
 
-    public static void printName(){
+    public static void printName() {
         for (int i = 0; i < employees.length; i++) {
-            if (employees [i] != null) {
+            if (employees[i] != null) {
                 System.out.println("ФИО: " + employees[i].getSurName() + " " + employees[i].getName() + " " + employees[i].getPatronymic());
             }
         }
     }
 
+    public static void changeSalary(float coef) {
+        for (int i = 0; i < employees.length; i++) {
+            int newSalary = (int) (employees[i].getSalary() * coef);
+            employees[i].setSalary(newSalary);
+        }
+    }
 
+    public static Employee personaMinSalary(int departament) {
+        int minSalary = Integer.MAX_VALUE;
+        Employee person = null;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartament() == departament && employees[i].getSalary() < minSalary) {
+                minSalary = employees[i].getSalary();
+                person = employees[i];
+            }
+        }
+        return person;
+    }
+
+    public static Employee personaMaxSalary(int departament) {
+        int maxSalary = Integer.MIN_VALUE;
+        Employee person = null;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartament() == departament && employees[i].getSalary() > maxSalary) {
+                maxSalary = employees[i].getSalary();
+                person = employees[i];
+            }
+        }
+        return person;
+    }
+
+    public static int sumByDepartament(int departament) {
+        int sum = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartament() == departament) {
+                sum += employees[i].getSalary();
+            }
+        }
+        return sum;
+    }
+
+    public static void changeSalaryByDepartment(int departament, float coef) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartament() == departament) {
+                int newSalary = (int) (employees[i].getSalary() * coef);
+                employees[i].setSalary(newSalary);
+            }
+        }
+    }
+
+    public static void printNameSalary(int departament) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null && employees[i].getDepartament() == departament) {
+                System.out.println("ФИО: " + employees[i].getSurName() + " " + employees[i].getName() + " " + employees[i].getPatronymic() + ". Зарплата: " + employees[i].getSalary());
+            }
+        }
+    }
+
+    public static void lessNumber(int salary) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getSalary() < salary) {
+                System.out.println(employees[i]);
+            }
+        }
+    }
+
+    public static void moreNumber(int salary) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getSalary() >= salary) {
+                System.out.println(employees[i]);
+            }
+        }
+    }
 }

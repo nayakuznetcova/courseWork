@@ -16,39 +16,39 @@ public class Employee {
         id = counter++;
     }
 
-    public String getSurName () {
+    public String getSurName() {
         return surName;
     }
 
-    public String getName () {
+    public String getName() {
         return name;
     }
 
-    public String getPatronymic () {
+    public String getPatronymic() {
         return patronymic;
     }
 
-    public int getDepartament (){
+    public int getDepartament() {
         return departament;
     }
 
-    public int getSalary (){
+    public int getSalary() {
         return salary;
     }
 
-    public int getId (){
+    public int getId() {
         return id;
     }
 
-    public void setDepartament (int departament){
+    public void setDepartament(int departament) {
         this.departament = departament;
     }
 
-    public void setSalary (int salary){
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public String toString () {
+    public String toString() {
         return "ФИО: " + surName + " " + name + " " + patronymic + ". Отдел: " + departament + ". Зарплата: " + salary + ". Id: " + id;
     }
 }
